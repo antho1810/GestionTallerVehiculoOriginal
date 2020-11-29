@@ -14,6 +14,7 @@
     <thead class="thead-dark">
         <tr>
             <th scope="col">#</th>
+            <th scope="col">Cedula</th>
             <th scope="col">Propietario</th>
             <th scope="col">Marca</th>
             <th scope="col">Nombre</th>
@@ -29,6 +30,7 @@
     <tbody>
         <tr *ngFor="let vehiculo of vehiculos; let i = index">
             <th scope="row">{{i+1}}</th>
+            <td>{{vehiculo.Cedula}}</td>
             <td>{{vehiculo.Propietario}}</td>
             <td>{{vehiculo.Marca}}</td>
             <td>{{vehiculo.Nombre}}</td>
@@ -36,9 +38,8 @@
             <td>{{vehiculo.Tipo}}</td>
             <td>{{vehiculo.Color}}</td>
             <td>{{vehiculo.Reparacion}}
-                <button (click)="verVehiculo(i)" class="row" class="btn btn-primary">
+                <button style="float:right;" (click)="verVehiculo(i)" class="row" class="btn btn-primary">
                     <i class="fa fa-plus"></i>
-                    Detalles
                 </button>
             </td>
             <td>
@@ -54,12 +55,20 @@
                 <button class="btn btn-danger" (click)="borrarVehiculo( vehiculo, i ) ">
                     <i class="fa fa-trash"></i>
                 </button>
+
             </td>
         </tr>
     </tbody>
 </table>
 
-<div *ngIf="vehiculos.length === 0" class="alert alert-warning text-center mt-3 animated fadeIn faster">
+<div *ngIf="!cargando && vehiculos.length === 0" class="alert alert-warning text-center mt-3 animated fadeIn faster">
     <h4 class="alert-heading">No hay registro</h4>
     <p><i class="fa fa-exclamation fa-2x"></i></p>
+</div>
+
+
+<div *ngIf="cargando" lass="alert alert-info text-center mt-3 animated fadeIn faster">
+    <h4 class="alert-heading">Cargando</h4>
+    <p><i class="fa fa-sync-alt fa-spin fa-2x"></i></p>
+    <p class="mb-0">Espere por favor</p>
 </div>

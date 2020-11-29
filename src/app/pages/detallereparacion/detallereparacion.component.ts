@@ -1,15 +1,37 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { VehiculoModel } from 'src/app/models/vehiculo.model';
 import { VehiculosService } from 'src/app/services/vehiculos.service';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-detallereparacion',
   templateUrl: './detallereparacion.component.html',
   styleUrls: ['./detallereparacion.component.css']
 })
-export class DetallereparacionComponent {
+export class DetallereparacionComponent implements OnInit {
 
+  vehiculos: VehiculoModel[] = [];
+  cargando = false;
+  vehiculo: VehiculoModel;
+
+  constructor(private vehiculosService: VehiculosService) { }
+
+  ngOnInit(): void {
+
+    this.cargando = true;
+    this.vehiculosService.getVehiculo()
+      .subscribe(resp => {
+        //console.log(resp);
+        this.vehiculos = resp;
+        this.cargando = false;
+      });
+  }
+
+
+  
+
+
+
+  /*
   vehiculos: VehiculoModel[] = [];
 
   constructor(private activateRoute: ActivatedRoute,
@@ -23,10 +45,6 @@ export class DetallereparacionComponent {
 
    
   }
-
-
-
-  /*
   
   ngOnInit(): void {
     this.vehiculosService.getVehiculo()

@@ -1,5 +1,6 @@
 export class VehiculoModel {
     id: string; 
+    Cedula: number;
     Propietario: string;
     Marca: string;
     Nombre: string;
