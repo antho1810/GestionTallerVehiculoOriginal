@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "GestionTallerVehiculo"
+    }
+  },
+  "defaultProject": "GestionTallerVehiculo",
+  "cli": {
+    "analytics": false
+  }
 }

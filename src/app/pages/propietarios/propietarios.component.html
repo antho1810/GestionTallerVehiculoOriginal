@@ -1,0 +1,65 @@
+<h1>Listado de Propietarios</h1>
+<hr>
+
+<div class="row">
+    <div class="col text-right ">
+        <button routerLink="/Add/nuevo" class="btn btn-primary">
+            <i class="fa fa-plus"></i>
+            Agregar
+        </button>
+    </div>
+</div>
+
+<table class="table mt-3 animated fadeIn faster">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Propietario</th>
+            <th scope="col">Marca</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Placa</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Color</th>
+            <th scope="col">Reparación</th>
+            <th scope="col">Reparado</th>
+            <th scope="col">Usuario</th>
+            <th scope="col">Tools</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let vehiculo of vehiculos; let i = index">
+            <th scope="row">{{i+1}}</th>
+            <td>{{vehiculo.Propietario}}</td>
+            <td>{{vehiculo.Marca}}</td>
+            <td>{{vehiculo.Nombre}}</td>
+            <td>{{vehiculo.Placa}}</td>
+            <td>{{vehiculo.Tipo}}</td>
+            <td>{{vehiculo.Color}}</td>
+            <td>{{vehiculo.Reparacion}}
+                <button (click)="verVehiculo(i)" class="row" class="btn btn-primary">
+                    <i class="fa fa-plus"></i>
+                    Detalles
+                </button>
+            </td>
+            <td>
+                <label *ngIf="vehiculo.Reparado" class="badge badge-success">Si</label>
+                <label *ngIf="!vehiculo.Reparado" class="badge badge-danger">No</label>
+            </td>
+            <td>{{vehiculo.Usuario}}</td>
+            <td>
+                <button class="btn btn-info mr-1" [routerLink]="['/Add', vehiculo.id]">
+                    <i class="fa fa-pen"></i>
+                </button>
+
+                <button class="btn btn-danger" (click)="borrarVehiculo( vehiculo, i ) ">
+                    <i class="fa fa-trash"></i>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div *ngIf="vehiculos.length === 0" class="alert alert-warning text-center mt-3 animated fadeIn faster">
+    <h4 class="alert-heading">No hay registro</h4>
+    <p><i class="fa fa-exclamation fa-2x"></i></p>
+</div>
