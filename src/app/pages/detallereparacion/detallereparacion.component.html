@@ -1,17 +1,17 @@
-<h1>{{vehiculo.Nombre}}<small>Propietario</small></h1>
+<h1>Nombre<small>Propietario</small></h1>
 <hr>
 <div class="row text-right">
     <div class="col">
-        <button class="btn btn-danger" [routerLink]="['/vehiculos']">
+        <button class="btn btn-danger" [routerLink]="['vehiculos']">
             <i class="fa fa-arrow-left"></i>
             Regresar
         </button>
     </div>
 </div>
 
-<div class="row">
-    <div>
-        <h3>Nombre</h3>
+<div style=" text-align: center; " class="row">
+    <div style="margin: auto;">
+        <p [(ngModel)]="vehiculo.Cedula"></p>      
         <hr>
         <p>Marca</p>
         <hr>
@@ -20,6 +20,9 @@
         <p>Placa</p>
         <hr>
         <p>Detalle</p>
+        <hr>
+        <p>Reparado</p>  
     </div>
 </div>
+
 

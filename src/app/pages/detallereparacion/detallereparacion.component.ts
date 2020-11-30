@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { VehiculoModel } from 'src/app/models/vehiculo.model';
 import { VehiculosService } from 'src/app/services/vehiculos.service';
 import Swal from 'sweetalert2';
+import { ActivatedRoute } from '@angular/router';
+
 @Component({
   selector: 'app-detallereparacion',
   templateUrl: './detallereparacion.component.html',
@@ -13,7 +15,7 @@ export class DetallereparacionComponent implements OnInit {
   cargando = false;
   vehiculo: VehiculoModel;
 
-  constructor(private vehiculosService: VehiculosService) { }
+  constructor(private vehiculosService: VehiculosService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
 
@@ -24,7 +26,23 @@ export class DetallereparacionComponent implements OnInit {
         this.vehiculos = resp;
         this.cargando = false;
       });
+
+      const id = this.route.snapshot.paramMap.get('id');
+
+    console.log(id);
+
+    if( id ){
+
+      this.vehiculosService.getVehi(id)
+      .subscribe( (resp: VehiculoModel) => {
+        this.vehiculo = resp;
+        this.vehiculo.id = id;
+      });
+    }
+    
+
   }
+  
 
 
   
